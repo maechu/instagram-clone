@@ -4,9 +4,9 @@ import React from 'react'
 
 export default function Navbar() {
   return (
-    <nav className='sticky top-0 w-full border border-b-1 z-50'>
+    <nav className='sticky top-0 z-50 w-full border border-b-1'>
       <div className='container max-w-5xl'>
-        <div className='flex flex-row py-1 items-center'>
+        <div className='flex flex-row items-center py-1'>
           <div className='basis-1/3'>
             <img 
               src={'images/Instagram_logo.svg'}
@@ -15,18 +15,16 @@ export default function Navbar() {
             />
           </div>
           <div className='basis-1/3'>
-            <div className='relative'>
-              <FontAwesomeIcon 
-                icon="magnifying-glass" 
-                className='absoulute left-3 top-3 text-gray-300' 
-              />
-              <input
-                type="text" 
-                className='p-2 bg-gray-100 rounded-lg w-80 pl-10 align-middle focus:outline-0 placeholder:font-light'/>
-            </div>
+          <label class="relative block">
+            <span class="sr-only">Search</span>
+            <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+              <svg class="h-5 w-5 fill-slate-300" viewBox="0 0 20 20"></svg>
+            </span>
+            <input class="placeholder:text-slate-500 block bg-neutral-200 w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:ring-1 sm:text-sm" placeholder="검색" type="text" name="search"/>
+          </label>
           </div>
           <div className='basis-1/3'>
-            <ul className='flex flex-row space-x-4 p-2 text-2xl justify-end items-center'>
+            <ul className='flex flex-row items-center justify-end p-2 space-x-4 text-2xl'>
               <li>
                 <a className='cursor-pointer'>
                   <FontAwesomeIcon icon="house" />
@@ -59,7 +57,7 @@ export default function Navbar() {
               <li>
                 <a className='cursor-pointer'>
                   <img 
-                    className='rounded-full w-6'
+                    className='w-6 rounded-full'
                     src={'images/smiley.svg'} 
                     alt="User Profile" 
                   />
