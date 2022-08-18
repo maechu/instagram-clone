@@ -1,32 +1,27 @@
 import './App.css';
-import Navbar from './components/Navbar';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
-import { Outlet, Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import MainPage from './pages/MainPage';
+import Profile from './pages/Profile'
+import Navbar from './components/Navbar';
+import LoginPage from './pages/LoginPage'
 
 // 아이콘 라이브러리
 library.add(fas, far);
 
-const Layout = () => {
-  return(
-    <div>
-      <Navbar />
-
-      <Outlet />
-    </div>
-  )
-}
-
 function App() {
   return (
     <div className='app'>
+      <BrowserRouter>
+      <Navbar />
       <Routes>
-        <Route path='/' element={<Layout />}>
-          <Route index element={<MainPage />}/>
-        </Route>
+          <Route path='/' element={<MainPage />}/>
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/login' element={<LoginPage />} />
       </Routes>
+      </BrowserRouter>
     </div>
   );
 }

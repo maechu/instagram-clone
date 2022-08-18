@@ -1,18 +1,22 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
+  if (window.location.pathname === '/login') return null;
   return (
-    <nav className='sticky top-0 z-50 w-full border border-b-1'>
+    <nav className='sticky top-0 z-50 w-full border border-b-1 '>
       <div className='container max-w-5xl'>
         <div className='flex flex-row items-center py-1'>
           <div className='basis-1/3'>
-            <img 
-              src={'images/Instagram_logo.svg'}
-              alt="Logo" 
-              width="120"
-            />
+            <Link to={'/'}>
+              <img 
+                src={'images/Instagram_logo.svg'}
+                alt="Logo" 
+                width="120"
+              />
+            </Link>
           </div>
           <div className='basis-1/3'>
           <label class="relative block">
@@ -26,9 +30,13 @@ export default function Navbar() {
           <div className='basis-1/3'>
             <ul className='flex flex-row items-center justify-end p-2 space-x-4 text-2xl'>
               <li>
-                <a className='cursor-pointer'>
-                  <FontAwesomeIcon icon="house" />
-                </a>
+                <Link to={'/'}>
+                  <a className='cursor-pointer'>
+                    <FontAwesomeIcon 
+                      icon="house"
+                    />
+                  </a>
+                </Link>
               </li>
               <li>
                 <a className='cursor-pointer'>
@@ -59,7 +67,7 @@ export default function Navbar() {
                   <img 
                     className='w-6 rounded-full'
                     src={'images/smiley.svg'} 
-                    alt="User Profile" 
+                    alt="User Profile"
                   />
                 </a>
               </li>
