@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  let [id, setId] = useState(false);
+  let [pw, setPw] = useState(false);
+  const [button, setButton] = useState(true);
+
+  const realId = "keem";
+  const realPw = "keem";
 
   const goToMain = () => {
-    navigate("/main", { replace: true });
+    navigate("/main");
   };
 
   const goToRegister = () => {
-    navigate("/register", { replace: true });
+    navigate("/register");
   };
+
+  function changeButton() {
+    id.length >= 3 && pw.length >= 3 ? setButton(false) : setButton(true);
+  }
 
   return (
     <div className="flex flex-col items-center w-full h-screen">
@@ -20,18 +30,38 @@ export default function LoginPage() {
         </div>
         <div className="flex flex-col items-center mt-8">
           <input
+            id="id"
             type="text"
             className="w-3/4 text-sm rounded form-input placeholder: text-slate-400 bg-neutral-100"
             placeholder="전화번호, 사용자 이름 또는 이메일"
+            onChange={(e) => {
+              setId(e.target.value);
+            }}
+            onKeyUp={changeButton}
           />
           <input
+            id="password"
             type="password"
             className="w-3/4 mt-2 text-sm rounded form-input placeholder: text-slate-400 bg-neutral-100"
             placeholder="비밀번호"
+            onChange={(e) => {
+              setPw(e.target.value);
+            }}
+            onKeyUp={changeButton}
           />
           <button
-            className="w-3/4 h-8 mt-4 text-sm font-medium text-white bg-blue-300 rounded opacity-50 cursor-not-allowed"
-            onClick={goToMain}
+            disabled={button}
+            className="w-3/4 h-8 mt-4 text-sm font-medium text-white rounded opacity-50 disabled:bg-blue-300 enabled:bg-blue-700"
+            onClick={(e) => {
+              if (realId === id) {
+                if (realPw === pw) {
+                  e.stopPropagation();
+                  goToMain();
+                }
+              } else {
+                alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+              }
+            }}
           >
             로그인
           </button>

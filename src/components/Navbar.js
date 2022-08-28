@@ -1,19 +1,31 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   if (window.location.pathname === "/") return null;
   if (window.location.pathname === "/register") return null;
+
+  const navigate = useNavigate();
+
+  const goToMain = () => {
+    navigate("/");
+  };
+
   return (
     <nav className="sticky top-0 w-full bg-white border z-1 border-b-1">
       <div className="container max-w-5xl">
         <div className="flex flex-row items-center py-1">
           <div className="basis-1/3">
-            <Link to={"/"}>
-              <img src={"images/Instagram_logo.svg"} alt="Logo" width="120" />
-            </Link>
+            <img
+              src={"images/Instagram_logo.svg"}
+              alt="Logo"
+              width="120"
+              onClick={goToMain}
+            />
           </div>
           <div className="basis-1/3">
             <label class="relative block">
